@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mattberryman.com/sitemap.xml
