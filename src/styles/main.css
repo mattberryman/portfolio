@@ -44,6 +44,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Concourse';
+  src: url('/fonts/concourse_6_regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Concourse Caps';
+  src: url('/fonts/concourse_3_caps_regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base, typography, layout, components, utilities, responsive;
 
 /* ============================================================
@@ -58,6 +74,8 @@
     /* Fonts */
     --font: 'Equity', Georgia, 'Times New Roman', serif;
     --font-caps: 'Equity Caps', 'Equity', Georgia, serif;
+    --font-nav: 'Concourse', 'Equity', Helvetica, Arial, sans-serif;
+    --font-nav-caps: 'Concourse Caps', 'Concourse', Helvetica, Arial, sans-serif;
 
     /* Type scale — Butterick: sizes by eye, not modular ratio */
     --body: 1.5625rem; /* 25px — body text, hero description */
@@ -214,14 +232,16 @@
     height: 4rem; /* 64px per spec */
   }
 
-  /* Nav name — Caps bold, body size, anchors the page */
+  /* Nav name — Concourse T7 Regular, body size, anchors the page */
   .nav-logo,
   .nav-name {
-    font-family: var(--font-caps);
-    font-variant: normal;
+    font-family: var(--font-nav);
     font-size: var(--body);
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0;
+    font-variant: normal;
+    text-transform: none;
     color: var(--ink);
   }
 
@@ -231,13 +251,15 @@
     list-style: none;
   }
 
-  /* Nav links — Caps regular, functional labelling */
+  /* Nav links — Concourse Caps T3 Regular, lighter grade for contrast */
   .nav-links a {
-    font-family: var(--font-caps);
-    font-variant: normal;
+    font-family: var(--font-nav-caps);
     font-size: var(--small);
     font-weight: 400;
-    letter-spacing: 0.05em;
+    font-style: normal;
+    letter-spacing: 0.07em;
+    font-variant: normal;
+    text-transform: none;
     color: var(--ink-light);
     transition: color var(--transition);
     position: relative;
@@ -286,11 +308,11 @@
     gap: 0.25rem;
     padding: 0.25rem 0.75rem;
     color: var(--ink-lighter);
-    font-family: var(--font-caps);
+    font-family: var(--font-nav-caps);
     font-variant: normal;
     font-size: 0.625rem;
     font-weight: 400;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     transition: color var(--transition);
     text-decoration: none;
   }
@@ -439,7 +461,7 @@
 
   .slide h2,
   .slide h3 {
-    font-size: clamp(var(--h3), 3vw, var(--h1));
+    font-size: clamp(var(--smaller), 2.5vw, var(--h3));
     font-weight: 700;
     line-height: var(--lh-heading);
     margin-bottom: clamp(0.25rem, 1.5vw, 1rem);
@@ -447,7 +469,7 @@
   }
 
   .slide p {
-    font-size: clamp(0.8rem, 1.8vw, var(--small));
+    font-size: clamp(0.75rem, 1.5vw, var(--smaller));
     color: var(--ink-light);
     line-height: var(--lh-body);
     max-width: 28rem;
@@ -531,37 +553,6 @@
 
   .slide-gradient-3 {
     background: linear-gradient(135deg, #faf9f7 0%, #f5f0e8 100%);
-  }
-
-  .slide-gradient-4 {
-    background: linear-gradient(135deg, #1a1a2e 0%, #3a2a5e 100%);
-  }
-  .slide-gradient-4 h2,
-  .slide-gradient-4 h3,
-  .slide-gradient-4 p,
-  .slide-gradient-4 .slide-number,
-  .slide-gradient-4 .slide-stat {
-    color: #fff;
-  }
-  .slide-gradient-4 p {
-    opacity: 0.8;
-  }
-
-  .slide-gradient-5 {
-    background: linear-gradient(135deg, #faf9f7 0%, #eef0f5 100%);
-  }
-
-  .slide-gradient-6 {
-    background: linear-gradient(135deg, var(--accent) 0%, #7b5aaa 100%);
-  }
-  .slide-gradient-6 h2,
-  .slide-gradient-6 h3,
-  .slide-gradient-6 p,
-  .slide-gradient-6 .slide-number {
-    color: #fff;
-  }
-  .slide-gradient-6 p {
-    opacity: 0.9;
   }
 
   /* ========================================
@@ -746,25 +737,6 @@
     margin-bottom: var(--space-5);
   }
 
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  /* Project tags — genuine small caps */
-  .project-tag {
-    font-family: var(--font-caps);
-    font-variant: normal;
-    font-size: var(--smaller);
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    color: rgba(255, 255, 255, 0.5);
-    padding: var(--space-1) var(--space-3);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 100px;
-  }
-
   .project-visual {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -848,112 +820,6 @@
   }
 
   /* ========================================
-     GITHUB / OPEN SOURCE
-     ======================================== */
-  .github-section {
-    background: var(--surface-subtle);
-  }
-
-  .github-card {
-    background: var(--surface-elevated);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-8);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-10);
-    align-items: center;
-  }
-
-  .github-info h3 {
-    font-size: var(--h3);
-    font-weight: 700;
-    line-height: var(--lh-heading);
-    color: var(--ink);
-    margin-bottom: var(--space-3);
-  }
-
-  .github-info p {
-    font-size: var(--small);
-    color: var(--ink-light);
-    line-height: var(--lh-body);
-    margin-bottom: var(--space-5);
-  }
-
-  .github-stats {
-    display: flex;
-    gap: var(--space-8);
-    margin-bottom: var(--space-6);
-  }
-
-  .github-stat .number {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--ink);
-    display: block;
-  }
-
-  .github-stat .desc {
-    font-family: var(--font-caps);
-    font-variant: normal;
-    font-size: var(--smaller);
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    color: var(--ink-lighter);
-  }
-
-  .github-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-5);
-    background: var(--ink);
-    color: #fff;
-    border-radius: var(--radius);
-    font-size: var(--small);
-    transition: all var(--transition);
-  }
-
-  .github-link:hover {
-    background: #444;
-  }
-  .github-link svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .github-contrib {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .contrib-row {
-    display: flex;
-    gap: 3px;
-  }
-
-  .contrib-cell {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-    background: var(--surface-subtle);
-  }
-
-  .contrib-cell.l1 {
-    background: rgba(91, 74, 138, 0.15);
-  }
-  .contrib-cell.l2 {
-    background: rgba(91, 74, 138, 0.3);
-  }
-  .contrib-cell.l3 {
-    background: rgba(91, 74, 138, 0.5);
-  }
-  .contrib-cell.l4 {
-    background: rgba(91, 74, 138, 0.75);
-  }
-
-  /* ========================================
      CONNECT / FOOTER
      ======================================== */
   .connect-section {
@@ -1014,6 +880,12 @@
     border-color: var(--accent);
     color: var(--accent);
     background: var(--accent-wash);
+  }
+
+  .social-link--personal {
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
   }
 
   .social-link svg {
@@ -1101,9 +973,6 @@
     }
     .project-card:nth-child(even) .project-visual {
       order: 0;
-    }
-    .github-card {
-      grid-template-columns: 1fr;
     }
   }
 
