@@ -146,6 +146,11 @@
     font-variant: normal;
   }
 
+  .text-link {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+  }
+
   /* Legacy .label (section labels above h2) — converted to genuine small caps */
   .label {
     font-family: var(--font-caps);
