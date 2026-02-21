@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found — Matt Berryman</title>
+<link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+<link rel="icon"             href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --ink-secondary: #4a4a5e;
+    --surface: #faf9f7;
+    --accent: #5b4a8a;
+    --border-strong: rgba(26, 26, 46, 0.14);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--surface);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  .container { max-width: 36rem; }
+  .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 2.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  p {
+    color: var(--ink-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-secondary);
+    text-decoration: none;
+    transition: 180ms ease;
+  }
+  a:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="container">
+    <p class="label">404</p>
+    <h1>This page doesn't exist.</h1>
+    <p>Or it did and it's gone.</p>
+    <a href="/">← Back to mattberryman.com</a>
+  </div>
+</body>
+</html>
