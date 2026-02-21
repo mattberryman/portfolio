@@ -179,6 +179,48 @@
 
   .nav-links a:hover::after { width: 100%; }
 
+  /* ---- Mobile nav (sticky bottom) ---- */
+  .mobile-nav {
+    display: none; /* shown only in @layer responsive */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(250, 249, 247, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border);
+    justify-content: space-around;
+    padding: 0.5rem 0;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    color: var(--ink-tertiary);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color var(--transition);
+    text-decoration: none;
+  }
+
+  .mobile-nav-item svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-nav-item.active,
+  .mobile-nav-item:hover {
+    color: var(--accent);
+  }
+
   /* ========================================
      HERO
      ======================================== */
@@ -875,6 +917,7 @@
       overflow: hidden;
     }
 
+    .mobile-nav { display: flex; }
     .hero-meta { gap: var(--space-4); }
     .hero-subtitle { font-size: var(--text-base); }
   }

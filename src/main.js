@@ -112,9 +112,34 @@ function initAnimations() {
   });
 }
 
+// ============ MOBILE NAV — ACTIVE SECTION ============
+function initMobileNav() {
+  const navItems = document.querySelectorAll('.mobile-nav-item');
+  if (!navItems.length) return;
+
+  const sections = ['writing', 'projects', 'github', 'connect'];
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(item => item.classList.remove('active'));
+        const active = document.querySelector(
+          `.mobile-nav-item[data-section="${entry.target.id}"]`
+        );
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px' });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+}
+
 // ============ ENTRY POINT ============
 document.addEventListener('DOMContentLoaded', () => {
   initSlideDeck();
   initContribGraph();
   initAnimations();
+  initMobileNav();
 });
