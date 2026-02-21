@@ -58,44 +58,6 @@ function initSlideDeck() {
   startAutoplay();
 }
 
-// ============ CONTRIBUTION GRAPH ============
-// Seeded PRNG (mulberry32) — produces an identical graph on every page load.
-// Replace seed value to get a different-but-stable pattern.
-function mulberry32(seed) {
-  return function () {
-    seed |= 0;
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-function initContribGraph() {
-  const container = document.getElementById('contribGraph');
-  if (!container) return;
-
-  const rand = mulberry32(0xdeadbeef);
-  const weeks = 26;
-  const days = 7;
-
-  for (let d = 0; d < days; d++) {
-    const row = document.createElement('div');
-    row.className = 'contrib-row';
-    for (let w = 0; w < weeks; w++) {
-      const cell = document.createElement('div');
-      cell.className = 'contrib-cell';
-      const r = rand();
-      if (r > 0.35) cell.classList.add('l1');
-      if (r > 0.55) cell.classList.add('l2');
-      if (r > 0.72) cell.classList.add('l3');
-      if (r > 0.88) cell.classList.add('l4');
-      row.appendChild(cell);
-    }
-    container.appendChild(row);
-  }
-}
-
 // ============ SCROLL ANIMATIONS ============
 function initAnimations() {
   const observer = new IntersectionObserver(
@@ -120,7 +82,7 @@ function initMobileNav() {
   const navItems = document.querySelectorAll('.mobile-nav-item');
   if (!navItems.length) return;
 
-  const sections = ['writing', 'projects', 'github', 'connect'];
+  const sections = ['writing', 'projects', 'connect'];
   const visibleSections = new Set();
   const observer = new IntersectionObserver(
     (entries) => {
@@ -150,7 +112,6 @@ function initMobileNav() {
 // ============ ENTRY POINT ============
 document.addEventListener('DOMContentLoaded', () => {
   initSlideDeck();
-  initContribGraph();
   initAnimations();
   initMobileNav();
 });
