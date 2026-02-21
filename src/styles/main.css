@@ -44,6 +44,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Concourse';
+  src: url('/fonts/concourse_6_regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Concourse Caps';
+  src: url('/fonts/concourse_3_caps_regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base, typography, layout, components, utilities, responsive;
 
 /* ============================================================
@@ -58,6 +74,8 @@
     /* Fonts */
     --font: 'Equity', Georgia, 'Times New Roman', serif;
     --font-caps: 'Equity Caps', 'Equity', Georgia, serif;
+    --font-nav: 'Concourse', 'Equity', Helvetica, Arial, sans-serif;
+    --font-nav-caps: 'Concourse Caps', 'Concourse', Helvetica, Arial, sans-serif;
 
     /* Type scale — Butterick: sizes by eye, not modular ratio */
     --body: 1.5625rem; /* 25px — body text, hero description */
@@ -214,14 +232,16 @@
     height: 4rem; /* 64px per spec */
   }
 
-  /* Nav name — Caps bold, body size, anchors the page */
+  /* Nav name — Concourse T7 Regular, body size, anchors the page */
   .nav-logo,
   .nav-name {
-    font-family: var(--font-caps);
-    font-variant: normal;
+    font-family: var(--font-nav);
     font-size: var(--body);
-    font-weight: 700;
-    letter-spacing: 0.05em;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0;
+    font-variant: normal;
+    text-transform: none;
     color: var(--ink);
   }
 
@@ -231,13 +251,15 @@
     list-style: none;
   }
 
-  /* Nav links — Caps regular, functional labelling */
+  /* Nav links — Concourse Caps T3 Regular, lighter grade for contrast */
   .nav-links a {
-    font-family: var(--font-caps);
-    font-variant: normal;
+    font-family: var(--font-nav-caps);
     font-size: var(--small);
     font-weight: 400;
-    letter-spacing: 0.05em;
+    font-style: normal;
+    letter-spacing: 0.07em;
+    font-variant: normal;
+    text-transform: none;
     color: var(--ink-light);
     transition: color var(--transition);
     position: relative;
@@ -286,11 +308,11 @@
     gap: 0.25rem;
     padding: 0.25rem 0.75rem;
     color: var(--ink-lighter);
-    font-family: var(--font-caps);
+    font-family: var(--font-nav-caps);
     font-variant: normal;
     font-size: 0.625rem;
     font-weight: 400;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     transition: color var(--transition);
     text-decoration: none;
   }
@@ -439,7 +461,7 @@
 
   .slide h2,
   .slide h3 {
-    font-size: clamp(var(--h3), 3vw, var(--h1));
+    font-size: clamp(var(--smaller), 2.5vw, var(--h3));
     font-weight: 700;
     line-height: var(--lh-heading);
     margin-bottom: clamp(0.25rem, 1.5vw, 1rem);
@@ -447,7 +469,7 @@
   }
 
   .slide p {
-    font-size: clamp(0.8rem, 1.8vw, var(--small));
+    font-size: clamp(0.75rem, 1.5vw, var(--smaller));
     color: var(--ink-light);
     line-height: var(--lh-body);
     max-width: 28rem;
