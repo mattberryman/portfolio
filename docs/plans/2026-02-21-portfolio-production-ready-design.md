@@ -37,6 +37,7 @@ portfolio/
 ## 2. Build Tooling
 
 **Vite** — no framework, no plugins. Handles:
+
 - CSS extraction and minification
 - JS bundling and minification
 - Content-hash fingerprinting on all asset filenames (cache-busting)
@@ -60,11 +61,13 @@ export default defineConfig({
 ```
 
 **Cloudflare Pages settings:**
+
 - Build command: `npm run build`
 - Build output directory: `dist`
 - Node version: current LTS
 
 **`package.json` scripts:**
+
 ```json
 {
   "scripts": {
@@ -83,45 +86,51 @@ Add to `index.html` `<head>`, replacing the existing bare `<meta name="descripti
 
 ```html
 <!-- Primary -->
-<meta name="description" content="13 years deploying AI/ML into Tier 1 Banks
+<meta
+  name="description"
+  content="13 years deploying AI/ML into Tier 1 Banks
   and Global Merchants across US, EMEA and APAC. Payments, AI governance
-  and EU regulation.">
-<link rel="canonical" href="https://mattberryman.com">
+  and EU regulation."
+/>
+<link rel="canonical" href="https://mattberryman.com" />
 
 <!-- Open Graph (LinkedIn reads these) -->
-<meta property="og:type"         content="website">
-<meta property="og:url"          content="https://mattberryman.com">
-<meta property="og:locale"       content="en_GB">
-<meta property="og:site_name"    content="Matt Berryman">
-<meta property="og:title"        content="Matt Berryman — Payments, AI & Regulation">
-<meta property="og:description"  content="13 years deploying AI/ML into Tier 1 Banks
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://mattberryman.com" />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:site_name" content="Matt Berryman" />
+<meta property="og:title" content="Matt Berryman — Payments, AI & Regulation" />
+<meta
+  property="og:description"
+  content="13 years deploying AI/ML into Tier 1 Banks
   and Global Merchants. Solution Architecture, Customer Success, Payments
-  and EU regulation.">
-<meta property="og:image"        content="https://mattberryman.com/og-mattberryman.png">
-<meta property="og:image:width"  content="1200">
-<meta property="og:image:height" content="630">
+  and EU regulation."
+/>
+<meta property="og:image" content="https://mattberryman.com/og-mattberryman.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 
 <!-- Favicons -->
-<link rel="icon"             href="/favicon.svg" type="image/svg+xml">
-<link rel="icon"             href="/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
 <!-- Schema.org Person -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Matt Berryman",
-  "url": "https://mattberryman.com",
-  "jobTitle": "Head of Customer Success & Solution Architecture",
-  "description": "13 years deploying AI/ML into Tier 1 Banks and Global Merchants.",
-  "sameAs": [
-    "https://www.linkedin.com/in/mattberryman/",
-    "https://github.com/mattberryman",
-    "https://transactionintelligence.net",
-    "https://matt.berryman.social"
-  ]
-}
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matt Berryman",
+    "url": "https://mattberryman.com",
+    "jobTitle": "Head of Customer Success & Solution Architecture",
+    "description": "13 years deploying AI/ML into Tier 1 Banks and Global Merchants.",
+    "sameAs": [
+      "https://www.linkedin.com/in/mattberryman/",
+      "https://github.com/mattberryman",
+      "https://transactionintelligence.net",
+      "https://matt.berryman.social"
+    ]
+  }
 </script>
 ```
 
@@ -171,10 +180,11 @@ Replace `Math.random()` with a seeded mulberry32 generator using a fixed seed. T
 ```js
 function mulberry32(seed) {
   return function () {
-    seed |= 0; seed = seed + 0x6D2B79F5 | 0;
-    let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
-    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    seed |= 0;
+    seed = (seed + 0x6d2b79f5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
 const rand = mulberry32(0xdeadbeef);
@@ -189,11 +199,17 @@ Add a second `<nav class="mobile-nav">` element to the HTML (after the existing 
 ```css
 /* Show only below 768px */
 @media (max-width: 768px) {
-  .nav-links   { display: none; }
-  .mobile-nav  { display: flex; }
+  .nav-links {
+    display: none;
+  }
+  .mobile-nav {
+    display: flex;
+  }
 }
 @media (min-width: 769px) {
-  .mobile-nav  { display: none; }
+  .mobile-nav {
+    display: none;
+  }
 }
 
 .mobile-nav {
@@ -220,11 +236,13 @@ Active section highlighting: extend the existing `IntersectionObserver` to track
 ## 7. Assets
 
 ### Favicon set
+
 - `public/favicon.svg` — provided SVG (purple `#5b4a8a` circle, white "MB" in Georgia serif)
 - `public/favicon.ico` — generated from SVG at 16×16 and 32×32 using `sharp`
 - `public/apple-touch-icon.png` — SVG rendered at 180×180 using `sharp`; solid `#5b4a8a` background (iOS crops to rounded square, no padding needed)
 
 Generation script (run once, output committed to `public/`):
+
 ```js
 // scripts/generate-favicons.js
 import sharp from 'sharp';
@@ -232,17 +250,19 @@ import sharp from 'sharp';
 ```
 
 ### OG images
-| File | Source | Action |
-|---|---|---|
-| `og-mattberryman.png` | TBD (owner to supply) | 1200×630, portfolio-level share image |
-| `og-paymentslaw.png` | `paymentsLegislation/public/og-image.png` (708 KB) | Copy + optimise with sharp (target < 200 KB) |
-| `og-3dsspec.png` | `3dsExplorer/public/og-image.png` (56 KB) | Copy as-is (already reasonable size) |
+
+| File                  | Source                                             | Action                                       |
+| --------------------- | -------------------------------------------------- | -------------------------------------------- |
+| `og-mattberryman.png` | TBD (owner to supply)                              | 1200×630, portfolio-level share image        |
+| `og-paymentslaw.png`  | `paymentsLegislation/public/og-image.png` (708 KB) | Copy + optimise with sharp (target < 200 KB) |
+| `og-3dsspec.png`      | `3dsExplorer/public/og-image.png` (56 KB)          | Copy as-is (already reasonable size)         |
 
 ---
 
 ## 8. Discoverability
 
 **`public/robots.txt`:**
+
 ```
 User-agent: *
 Allow: /
@@ -250,6 +270,7 @@ Sitemap: https://mattberryman.com/sitemap.xml
 ```
 
 **`public/sitemap.xml`:**
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -288,7 +309,7 @@ Update `<lastmod>` manually when content changes.
 
 `404.html` — standalone page using the same Google Fonts link, same CSS custom properties (inlined `<style>` block with just the tokens and minimal layout needed), same favicon references. Body copy:
 
-> *This page doesn't exist — or it did and it's gone.*
+> _This page doesn't exist — or it did and it's gone._
 > [← Back to mattberryman.com](/)
 
 Styled to match the site's visual language (dark ink, accent purple, Newsreader serif for the heading). Vite handles it as a second entry point so it receives the same asset fingerprinting as `index.html`.

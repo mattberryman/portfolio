@@ -15,6 +15,7 @@
 ### Task 1: Git init + Vite scaffold
 
 **Files:**
+
 - Create: `package.json`
 - Create: `vite.config.js`
 - Create: `.gitignore`
@@ -105,6 +106,7 @@ git commit -m "chore: initialise vite build pipeline"
 ### Task 2: Extract CSS to `src/styles/main.css`
 
 **Files:**
+
 - Create: `src/styles/main.css`
 - Modify: `index.html` (remove `<style>` block, add `<link>`)
 
@@ -155,7 +157,7 @@ Then restructure using `@layer` by wrapping each existing comment section:
 Remove the `<style>…</style>` block entirely. Replace with:
 
 ```html
-<link rel="stylesheet" href="/src/styles/main.css">
+<link rel="stylesheet" href="/src/styles/main.css" />
 ```
 
 Place it immediately after the Google Fonts `<link>` tags, before `</head>`.
@@ -188,6 +190,7 @@ git commit -m "refactor: extract CSS to src/styles/main.css with @layer structur
 ### Task 3: Extract JS to `src/main.js` + fix contribution graph
 
 **Files:**
+
 - Create: `src/main.js`
 - Modify: `index.html` (remove `<script>` block, add module script)
 
@@ -225,7 +228,7 @@ function initSlideDeck() {
     clearInterval(interval);
   }
 
-  dots.forEach(dot => {
+  dots.forEach((dot) => {
     dot.addEventListener('click', () => {
       stopAutoplay();
       goTo(parseInt(dot.dataset.target, 10));
@@ -259,7 +262,7 @@ function initSlideDeck() {
 function mulberry32(seed) {
   return function () {
     seed |= 0;
-    seed = (seed + 0x6D2B79F5) | 0;
+    seed = (seed + 0x6d2b79f5) | 0;
     let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -293,15 +296,18 @@ function initContribGraph() {
 
 // ============ SCROLL ANIMATIONS ============
 function initAnimations() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-      }
-    });
-  }, { threshold: 0.1 });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
 
-  document.querySelectorAll('.animate-in').forEach(el => {
+  document.querySelectorAll('.animate-in').forEach((el) => {
     el.style.animationPlayState = 'paused';
     observer.observe(el);
   });
@@ -332,6 +338,7 @@ npm run dev
 ```
 
 Check:
+
 - Slide deck auto-advances every 5 seconds
 - Dot navigation works
 - Keyboard arrow keys work
@@ -358,6 +365,7 @@ git commit -m "refactor: extract JS to src/main.js, fix contrib graph with seede
 ### Task 4: Update HTML `<head>` — meta tags, OG, schema.org
 
 **Files:**
+
 - Modify: `index.html`
 
 **Step 1: Replace the `<head>` meta section**
@@ -366,52 +374,61 @@ Find the existing `<head>` block. It currently has `<title>`, one `<meta name="d
 
 ```html
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matt Berryman — Payments, AI & Regulation</title>
-<meta name="description" content="13 years deploying AI/ML into Tier 1 Banks and Global Merchants across US, EMEA and APAC. Payments, AI governance and EU regulation.">
-<link rel="canonical" href="https://mattberryman.com">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matt Berryman — Payments, AI & Regulation</title>
+  <meta
+    name="description"
+    content="13 years deploying AI/ML into Tier 1 Banks and Global Merchants across US, EMEA and APAC. Payments, AI governance and EU regulation."
+  />
+  <link rel="canonical" href="https://mattberryman.com" />
 
-<!-- Open Graph -->
-<meta property="og:type"         content="website">
-<meta property="og:url"          content="https://mattberryman.com">
-<meta property="og:locale"       content="en_GB">
-<meta property="og:site_name"    content="Matt Berryman">
-<meta property="og:title"        content="Matt Berryman — Payments, AI & Regulation">
-<meta property="og:description"  content="13 years deploying AI/ML into Tier 1 Banks and Global Merchants. Solution Architecture, Customer Success, Payments and EU regulation.">
-<meta property="og:image"        content="https://mattberryman.com/og-mattberryman.png">
-<meta property="og:image:width"  content="1200">
-<meta property="og:image:height" content="630">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mattberryman.com" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:site_name" content="Matt Berryman" />
+  <meta property="og:title" content="Matt Berryman — Payments, AI & Regulation" />
+  <meta
+    property="og:description"
+    content="13 years deploying AI/ML into Tier 1 Banks and Global Merchants. Solution Architecture, Customer Success, Payments and EU regulation."
+  />
+  <meta property="og:image" content="https://mattberryman.com/og-mattberryman.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
-<!-- Favicons -->
-<link rel="icon"             href="/favicon.svg" type="image/svg+xml">
-<link rel="icon"             href="/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-<!-- Schema.org Person -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Matt Berryman",
-  "url": "https://mattberryman.com",
-  "jobTitle": "Head of Customer Success & Solution Architecture",
-  "description": "13 years deploying AI/ML into Tier 1 Banks and Global Merchants.",
-  "sameAs": [
-    "https://www.linkedin.com/in/mattberryman/",
-    "https://github.com/mattberryman",
-    "https://transactionintelligence.net",
-    "https://matt.berryman.social"
-  ]
-}
-</script>
+  <!-- Schema.org Person -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Matt Berryman",
+      "url": "https://mattberryman.com",
+      "jobTitle": "Head of Customer Success & Solution Architecture",
+      "description": "13 years deploying AI/ML into Tier 1 Banks and Global Merchants.",
+      "sameAs": [
+        "https://www.linkedin.com/in/mattberryman/",
+        "https://github.com/mattberryman",
+        "https://transactionintelligence.net",
+        "https://matt.berryman.social"
+      ]
+    }
+  </script>
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+    rel="stylesheet"
+  />
 
-<link rel="stylesheet" href="/src/styles/main.css">
+  <link rel="stylesheet" href="/src/styles/main.css" />
 </head>
 ```
 
@@ -439,6 +456,7 @@ git commit -m "feat: add OG meta tags, canonical URL, and schema.org Person stru
 ### Task 5: Generate favicon assets
 
 **Files:**
+
 - Create: `public/favicon.svg`
 - Create: `scripts/generate-assets.js`
 - Create: `public/favicon.ico` (generated)
@@ -475,12 +493,8 @@ console.log('✓ apple-touch-icon.png');
 // favicon.ico: 16×16 and 32×32 combined
 const sizes = [16, 32];
 const pngBuffers = await Promise.all(
-  sizes.map(size =>
-    sharp(svg)
-      .resize(size, size)
-      .flatten({ background: '#5b4a8a' })
-      .png()
-      .toBuffer()
+  sizes.map((size) =>
+    sharp(svg).resize(size, size).flatten({ background: '#5b4a8a' }).png().toBuffer()
   )
 );
 
@@ -498,6 +512,7 @@ npm run generate-assets
 ```
 
 Expected output:
+
 ```
 ✓ apple-touch-icon.png
 ✓ favicon.ico
@@ -505,6 +520,7 @@ Done.
 ```
 
 Verify both files exist in `public/`:
+
 ```bash
 ls -lh public/favicon.ico public/apple-touch-icon.png
 ```
@@ -529,6 +545,7 @@ git commit -m "feat: add favicon set (SVG, ICO, apple-touch-icon)"
 ### Task 6: Add and optimise OG images
 
 **Files:**
+
 - Modify: `scripts/generate-assets.js` (extend to handle OG images)
 - Create: `public/og-paymentslaw.png` (optimised)
 - Create: `public/og-3dsspec.png` (copied)
@@ -550,8 +567,7 @@ const plSize = (fs.statSync('public/og-paymentslaw.png').size / 1024).toFixed(0)
 console.log(`✓ og-paymentslaw.png (${plSize} KB)`);
 
 // Copy 3dsspec (already 56 KB, no optimisation needed)
-await sharp('../3dsExplorer/public/og-image.png')
-  .toFile('public/og-3dsspec.png');
+await sharp('../3dsExplorer/public/og-image.png').toFile('public/og-3dsspec.png');
 
 console.log('✓ og-3dsspec.png');
 ```
@@ -603,6 +619,7 @@ git commit -m "feat: add optimised OG images, fix broken og-3dsspec (was 0 bytes
 ### Task 7: Add sticky bottom mobile nav
 
 **Files:**
+
 - Modify: `index.html` (add `<nav class="mobile-nav">`)
 - Modify: `src/styles/main.css` (add mobile nav CSS)
 - Modify: `src/main.js` (extend IntersectionObserver for active section)
@@ -615,19 +632,55 @@ Immediately after the closing `</nav>` tag of the desktop nav, add:
 <!-- ============ MOBILE NAV (sticky bottom, < 768px only) ============ -->
 <nav class="mobile-nav" aria-label="Mobile navigation">
   <a href="#writing" class="mobile-nav-item" data-section="writing">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+    </svg>
     <span>Writing</span>
   </a>
   <a href="#projects" class="mobile-nav-item" data-section="projects">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <rect width="20" height="14" x="2" y="7" rx="2" />
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    </svg>
     <span>Projects</span>
   </a>
   <a href="#github" class="mobile-nav-item" data-section="github">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path
+        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+      />
+    </svg>
     <span>Open Source</span>
   </a>
   <a href="#connect" class="mobile-nav-item" data-section="connect">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/></svg>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M18 20a6 6 0 0 0-12 0" />
+      <circle cx="12" cy="10" r="4" />
+    </svg>
     <span>Connect</span>
   </a>
 </nav>
@@ -684,7 +737,9 @@ Add inside the `@layer components` block, after the existing nav styles:
 In the `@layer responsive` block, inside the existing `@media (max-width: 768px)` rule, add:
 
 ```css
-.mobile-nav { display: flex; }
+.mobile-nav {
+  display: flex;
+}
 ```
 
 **Step 3: Extend `src/main.js` — active section tracking**
@@ -698,19 +753,22 @@ function initMobileNav() {
   if (!navItems.length) return;
 
   const sections = ['writing', 'projects', 'github', 'connect'];
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navItems.forEach(item => item.classList.remove('active'));
-        const active = document.querySelector(
-          `.mobile-nav-item[data-section="${entry.target.id}"]`
-        );
-        if (active) active.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-40% 0px -40% 0px' });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navItems.forEach((item) => item.classList.remove('active'));
+          const active = document.querySelector(
+            `.mobile-nav-item[data-section="${entry.target.id}"]`
+          );
+          if (active) active.classList.add('active');
+        }
+      });
+    },
+    { rootMargin: '-40% 0px -40% 0px' }
+  );
 
-  sections.forEach(id => {
+  sections.forEach((id) => {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
@@ -726,6 +784,7 @@ npm run dev
 ```
 
 Open browser DevTools → toggle device toolbar → select iPhone 14 (or similar). Confirm:
+
 - Sticky nav appears at bottom of viewport
 - All four icons and labels are visible
 - Tapping a link scrolls to the correct section
@@ -744,6 +803,7 @@ git commit -m "feat: add sticky bottom mobile nav with active section tracking"
 ### Task 8: Add `robots.txt` and `sitemap.xml`
 
 **Files:**
+
 - Create: `public/robots.txt`
 - Create: `public/sitemap.xml`
 
@@ -790,6 +850,7 @@ git commit -m "feat: add robots.txt and sitemap.xml"
 ### Task 9: Add Cloudflare security headers
 
 **Files:**
+
 - Create: `public/_headers`
 
 **Step 1: Create `public/_headers`**
@@ -825,6 +886,7 @@ git commit -m "feat: add Cloudflare security headers (CSP, HSTS, X-Frame-Options
 ### Task 10: Create `404.html`
 
 **Files:**
+
 - Create: `404.html`
 - Modify: `vite.config.js` (already configured for multi-page — no change needed)
 
@@ -833,83 +895,103 @@ git commit -m "feat: add Cloudflare security headers (CSP, HSTS, X-Frame-Options
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Page not found — Matt Berryman</title>
-<link rel="icon"             href="/favicon.svg" type="image/svg+xml">
-<link rel="icon"             href="/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #1a1a2e;
-    --ink-secondary: #4a4a5e;
-    --ink-tertiary: #7a7a8e;
-    --surface: #faf9f7;
-    --accent: #5b4a8a;
-    --border: rgba(26, 26, 46, 0.08);
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
-  body {
-    font-family: 'Inter', -apple-system, sans-serif;
-    color: var(--ink);
-    background: var(--surface);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-  }
-  .container { max-width: 36rem; }
-  .label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-  h1 {
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 2.75rem;
-    font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  p {
-    color: var(--ink-secondary);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-  a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid rgba(26, 26, 46, 0.14);
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--ink-secondary);
-    text-decoration: none;
-    transition: 180ms ease;
-  }
-  a:hover { border-color: var(--accent); color: var(--accent); }
-</style>
-</head>
-<body>
-  <div class="container">
-    <p class="label">404</p>
-    <h1>This page doesn't exist.</h1>
-    <p>Or it did and it's gone.</p>
-    <a href="/">← Back to mattberryman.com</a>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found — Matt Berryman</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #1a1a2e;
+        --ink-secondary: #4a4a5e;
+        --ink-tertiary: #7a7a8e;
+        --surface: #faf9f7;
+        --accent: #5b4a8a;
+        --border: rgba(26, 26, 46, 0.08);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+      body {
+        font-family:
+          'Inter',
+          -apple-system,
+          sans-serif;
+        color: var(--ink);
+        background: var(--surface);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
+      .container {
+        max-width: 36rem;
+      }
+      .label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-family: 'Newsreader', Georgia, serif;
+        font-size: 2.75rem;
+        font-weight: 500;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+      p {
+        color: var(--ink-secondary);
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: 1px solid rgba(26, 26, 46, 0.14);
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ink-secondary);
+        text-decoration: none;
+        transition: 180ms ease;
+      }
+      a:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p class="label">404</p>
+      <h1>This page doesn't exist.</h1>
+      <p>Or it did and it's gone.</p>
+      <a href="/">← Back to mattberryman.com</a>
+    </div>
+  </body>
 </html>
 ```
 
@@ -955,6 +1037,7 @@ ls -lh dist/assets/
 ```
 
 Expected:
+
 - `dist/index.html`
 - `dist/404.html`
 - `dist/_headers`
@@ -1024,10 +1107,10 @@ git commit -m "feat: add portfolio OG image"
 
 ## Pending owner actions before go-live
 
-| Item | Status |
-|---|---|
-| Supply `og-mattberryman.png` (1200×630) | Pending |
+| Item                                                                                 | Status  |
+| ------------------------------------------------------------------------------------ | ------- |
+| Supply `og-mattberryman.png` (1200×630)                                              | Pending |
 | Configure Cloudflare Pages build settings (command: `npm run build`, output: `dist`) | Pending |
-| Connect `mattberryman.com` + `mattberryman.co.uk` domains in CF dashboard | Pending |
-| Enable Cloudflare Web Analytics (automatic injection, dashboard setting) | Pending |
-| Enable HSTS preload via CF dashboard after first successful deploy | Pending |
+| Connect `mattberryman.com` + `mattberryman.co.uk` domains in CF dashboard            | Pending |
+| Enable Cloudflare Web Analytics (automatic injection, dashboard setting)             | Pending |
+| Enable HSTS preload via CF dashboard after first successful deploy                   | Pending |

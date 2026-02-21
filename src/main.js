@@ -30,7 +30,7 @@ function initSlideDeck() {
     clearInterval(interval);
   }
 
-  dots.forEach(dot => {
+  dots.forEach((dot) => {
     dot.addEventListener('click', () => {
       stopAutoplay();
       goTo(parseInt(dot.dataset.target, 10));
@@ -64,7 +64,7 @@ function initSlideDeck() {
 function mulberry32(seed) {
   return function () {
     seed |= 0;
-    seed = (seed + 0x6D2B79F5) | 0;
+    seed = (seed + 0x6d2b79f5) | 0;
     let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -98,15 +98,18 @@ function initContribGraph() {
 
 // ============ SCROLL ANIMATIONS ============
 function initAnimations() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-      }
-    });
-  }, { threshold: 0.1 });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
 
-  document.querySelectorAll('.animate-in').forEach(el => {
+  document.querySelectorAll('.animate-in').forEach((el) => {
     el.style.animationPlayState = 'paused';
     observer.observe(el);
   });
@@ -119,25 +122,26 @@ function initMobileNav() {
 
   const sections = ['writing', 'projects', 'github', 'connect'];
   const visibleSections = new Set();
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        visibleSections.add(entry.target.id);
-      } else {
-        visibleSections.delete(entry.target.id);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          visibleSections.add(entry.target.id);
+        } else {
+          visibleSections.delete(entry.target.id);
+        }
+      });
+      navItems.forEach((item) => item.classList.remove('active'));
+      const firstVisible = sections.find((id) => visibleSections.has(id));
+      if (firstVisible) {
+        const active = document.querySelector(`.mobile-nav-item[data-section="${firstVisible}"]`);
+        if (active) active.classList.add('active');
       }
-    });
-    navItems.forEach(item => item.classList.remove('active'));
-    const firstVisible = sections.find(id => visibleSections.has(id));
-    if (firstVisible) {
-      const active = document.querySelector(
-        `.mobile-nav-item[data-section="${firstVisible}"]`
-      );
-      if (active) active.classList.add('active');
-    }
-  }, { rootMargin: '-40% 0px -40% 0px' });
+    },
+    { rootMargin: '-40% 0px -40% 0px' }
+  );
 
-  sections.forEach(id => {
+  sections.forEach((id) => {
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
