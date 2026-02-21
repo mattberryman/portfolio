@@ -118,16 +118,23 @@ function initMobileNav() {
   if (!navItems.length) return;
 
   const sections = ['writing', 'projects', 'github', 'connect'];
+  const visibleSections = new Set();
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        navItems.forEach(item => item.classList.remove('active'));
-        const active = document.querySelector(
-          `.mobile-nav-item[data-section="${entry.target.id}"]`
-        );
-        if (active) active.classList.add('active');
+        visibleSections.add(entry.target.id);
+      } else {
+        visibleSections.delete(entry.target.id);
       }
     });
+    navItems.forEach(item => item.classList.remove('active'));
+    const firstVisible = sections.find(id => visibleSections.has(id));
+    if (firstVisible) {
+      const active = document.querySelector(
+        `.mobile-nav-item[data-section="${firstVisible}"]`
+      );
+      if (active) active.classList.add('active');
+    }
   }, { rootMargin: '-40% 0px -40% 0px' });
 
   sections.forEach(id => {
