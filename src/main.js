@@ -10,6 +10,7 @@ function initSlideDeck() {
   let interval;
 
   function goTo(index) {
+    if (index < 0 || index >= slides.length || index >= dots.length) return;
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
     current = index;
