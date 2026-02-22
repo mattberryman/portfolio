@@ -162,11 +162,11 @@
 
   /* Legacy .label (section labels above h2) — converted to genuine small caps */
   .label {
-    font-family: var(--font-caps);
+    font-family: var(--font-nav-caps);
     font-variant: normal;
     font-size: var(--smaller);
     font-weight: 400;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     color: var(--accent);
   }
 }
@@ -389,11 +389,11 @@
   }
 
   .slide-number {
-    font-family: var(--font-caps);
+    font-family: var(--font-nav-caps);
     font-variant: normal;
     font-size: var(--smaller);
     font-weight: 400;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     color: var(--accent);
     margin-bottom: clamp(0.25rem, 1.5vw, 1rem);
     flex-shrink: 0;
@@ -520,11 +520,11 @@
 
   /* Card category label — genuine small caps, no fake uppercase */
   .article-card .tag {
-    font-family: var(--font-caps);
+    font-family: var(--font-nav-caps);
     font-variant: normal;
     font-size: var(--smaller);
     font-weight: 400;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.07em;
     color: var(--accent);
     margin-bottom: var(--space-4);
     align-self: flex-start;
@@ -551,7 +551,9 @@
     align-items: center;
     gap: var(--space-2);
     margin-top: var(--space-5);
+    font-family: var(--font-nav-caps);
     font-size: var(--small);
+    letter-spacing: 0.05em;
     color: var(--accent);
     transition: gap var(--transition);
   }
@@ -629,6 +631,7 @@
   }
 
   .project-info .project-url {
+    font-family: var(--font-nav);
     font-size: var(--small);
     color: var(--accent-light);
     margin-bottom: var(--space-5);
@@ -670,6 +673,7 @@
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius);
     color: #fff;
+    font-family: var(--font-nav);
     font-size: var(--small);
     transition: all var(--transition);
     margin-top: var(--space-5);
@@ -723,7 +727,9 @@
     padding: var(--space-3) var(--space-5);
     border: 1px solid var(--border-strong);
     border-radius: var(--radius);
+    font-family: var(--font-nav-caps);
     font-size: var(--small);
+    letter-spacing: 0.05em;
     color: var(--ink-light);
     transition: all var(--transition);
   }
