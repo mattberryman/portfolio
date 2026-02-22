@@ -23,23 +23,9 @@
   font-display: swap;
 }
 @font-face {
-  font-family: 'Equity';
-  src: url('/fonts/equity_a_bold_italic.woff2') format('woff2');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
   font-family: 'Equity Caps';
   src: url('/fonts/equity_a_caps_regular.woff2') format('woff2');
   font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Equity Caps';
-  src: url('/fonts/equity_a_caps_bold.woff2') format('woff2');
-  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -174,17 +160,6 @@
     line-height: var(--lh-heading);
   }
 
-  /* Small caps — always set font-variant: normal to prevent fallback synthesis */
-  .caps {
-    font-family: var(--font-caps);
-    font-variant: normal;
-  }
-
-  .text-link {
-    color: var(--accent);
-    border-bottom: 1px solid var(--accent);
-  }
-
   /* Legacy .label (section labels above h2) — converted to genuine small caps */
   .label {
     font-family: var(--font-caps);
@@ -233,8 +208,7 @@
   }
 
   /* Nav name — Concourse T7 Regular, body size, anchors the page */
-  .nav-logo,
-  .nav-name {
+  .nav-logo {
     font-family: var(--font-nav);
     font-size: var(--body);
     font-weight: 400;
@@ -356,18 +330,6 @@
     align-items: center;
   }
 
-  /* Hero domain label — Caps regular, accent colour */
-  .hero-label {
-    font-family: var(--font-caps);
-    font-variant: normal;
-    font-size: var(--small);
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    margin-bottom: var(--space-4);
-    display: block;
-  }
-
   /* Hero h1 — italic, not bold; voice not structure */
   .hero-text h1 {
     font-size: var(--h1);
@@ -386,34 +348,6 @@
     line-height: var(--lh-body);
     max-width: 560px;
     margin-bottom: var(--space-8);
-  }
-
-  .hero-meta {
-    display: flex;
-    gap: var(--space-6);
-    flex-wrap: wrap;
-  }
-
-  .hero-meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-  }
-
-  .hero-meta-item .value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--ink);
-    display: block;
-  }
-
-  .hero-meta-item .caption {
-    font-family: var(--font-caps);
-    font-variant: normal;
-    font-size: var(--smaller);
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    color: var(--ink-lighter);
   }
 
   /* Slide deck in hero */
@@ -459,8 +393,7 @@
     flex-shrink: 0;
   }
 
-  .slide h2,
-  .slide h3 {
+  .slide h2 {
     font-size: clamp(var(--smaller), 2.5vw, var(--h3));
     font-weight: 700;
     line-height: var(--lh-heading);
@@ -477,35 +410,6 @@
     flex-shrink: 1;
     min-height: 0;
     overflow: hidden;
-  }
-
-  .slide-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-top: clamp(0.25rem, 1.5vw, 1rem);
-    flex-shrink: 1;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .slide-pill {
-    display: inline-block;
-    padding: var(--space-1) var(--space-3);
-    background: var(--accent-wash);
-    color: var(--accent);
-    border-radius: 100px;
-    font-size: clamp(0.625rem, 1.2vw, var(--smaller));
-    white-space: nowrap;
-  }
-
-  .slide-stat {
-    font-size: clamp(2rem, 6vw, 4rem);
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: clamp(0.25rem, 1vw, 0.75rem);
-    flex-shrink: 0;
   }
 
   .slide-controls {
@@ -542,7 +446,6 @@
     background: linear-gradient(135deg, var(--ink) 0%, #2a2a4e 100%);
   }
   .slide-gradient-2 h2,
-  .slide-gradient-2 h3,
   .slide-gradient-2 p,
   .slide-gradient-2 .slide-number {
     color: #fff;
@@ -610,8 +513,7 @@
   }
 
   /* Card category label — genuine small caps, no fake uppercase */
-  .article-card .tag,
-  .article-card .card-label {
+  .article-card .tag {
     font-family: var(--font-caps);
     font-variant: normal;
     font-size: var(--smaller);
@@ -692,9 +594,6 @@
   .projects-section .section-header p {
     color: rgba(255, 255, 255, 0.6);
   }
-  .projects-section .section-divider {
-    background: var(--accent-light);
-  }
 
   .project-card {
     display: grid;
@@ -705,7 +604,7 @@
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .project-card:first-child {
+  .section-header + .project-card {
     border-top: none;
   }
   .project-card:nth-child(even) .project-info {
@@ -754,29 +653,6 @@
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  .project-visual-inner {
-    text-align: center;
-    padding: var(--space-6);
-  }
-
-  .project-visual-icon {
-    font-size: 2.5rem;
-    margin-bottom: var(--space-3);
-    opacity: 0.9;
-  }
-
-  .project-visual-title {
-    font-size: var(--h3);
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  .project-visual-subtitle {
-    font-size: var(--small);
-    color: rgba(255, 255, 255, 0.4);
-    margin-top: var(--space-2);
   }
 
   .visit-link {
@@ -852,20 +728,6 @@
     background: var(--accent-wash);
   }
 
-  /* Personal link (matt.berryman.social) — subdued, dashed border */
-  .social-link.personal {
-    color: var(--ink-lighter);
-    border-style: dashed;
-    border-color: var(--border);
-  }
-
-  .social-link.personal:hover {
-    border-style: solid;
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-wash);
-  }
-
   .social-link--personal {
     margin-top: var(--space-4);
     padding-top: var(--space-4);
@@ -932,6 +794,9 @@
   .animate-in:nth-child(5) {
     animation-delay: 500ms;
   }
+  .animate-in:nth-child(6) {
+    animation-delay: 600ms;
+  }
 }
 
 @layer responsive {
@@ -987,12 +852,6 @@
   @media (max-width: 480px) {
     .slide-deck {
       aspect-ratio: 3 / 3;
-    }
-    .slide-pills {
-      gap: var(--space-1);
-    }
-    .slide-pill {
-      padding: 0.125rem 0.5rem;
     }
     .slide p {
       -webkit-line-clamp: 3;

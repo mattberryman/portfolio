@@ -4,22 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page not found — Matt Berryman</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
-      rel="stylesheet"
-    />
     <style>
+      @font-face {
+        font-family: 'Equity';
+        src: url('/fonts/equity_a_regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Equity';
+        src: url('/fonts/equity_a_italic.woff2') format('woff2');
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Equity Caps';
+        src: url('/fonts/equity_a_caps_regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
       :root {
-        --ink: #1a1a2e;
-        --ink-secondary: #4a4a5e;
+        --ink: #333;
+        --ink-light: #666;
         --surface: #faf9f7;
         --accent: #5b4a8a;
-        --border-strong: rgba(26, 26, 46, 0.14);
+        --border-strong: rgba(51, 51, 51, 0.14);
       }
       *,
       *::before,
@@ -33,10 +48,7 @@
         -webkit-font-smoothing: antialiased;
       }
       body {
-        font-family:
-          'Inter',
-          -apple-system,
-          sans-serif;
+        font-family: 'Equity', Georgia, 'Times New Roman', serif;
         color: var(--ink);
         background: var(--surface);
         min-height: 100vh;
@@ -50,22 +62,24 @@
         max-width: 36rem;
       }
       .label {
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+        font-family: 'Equity Caps', 'Equity', Georgia, serif;
+        font-variant: normal;
+        font-size: 0.875rem;
+        font-weight: 400;
+        letter-spacing: 0.06em;
         color: var(--accent);
         margin-bottom: 1rem;
       }
       h1 {
-        font-family: 'Newsreader', Georgia, serif;
+        font-family: 'Equity', Georgia, 'Times New Roman', serif;
         font-size: 2.75rem;
-        font-weight: 500;
+        font-weight: 400;
+        font-style: italic;
         line-height: 1.2;
         margin-bottom: 1rem;
       }
       p {
-        color: var(--ink-secondary);
+        color: var(--ink-light);
         line-height: 1.7;
         margin-bottom: 2rem;
       }
@@ -76,9 +90,8 @@
         padding: 0.75rem 1.5rem;
         border: 1px solid var(--border-strong);
         border-radius: 8px;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: var(--ink-secondary);
+        font-size: 0.9375rem;
+        color: var(--ink-light);
         text-decoration: none;
         transition: 180ms ease;
       }

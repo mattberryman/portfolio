@@ -22,6 +22,10 @@ function initSlideDeck() {
     goTo((current + 1) % slides.length);
   }
 
+  function prev() {
+    goTo((current - 1 + slides.length) % slides.length);
+  }
+
   function startAutoplay() {
     interval = setInterval(next, 5000);
   }
@@ -42,12 +46,12 @@ function initSlideDeck() {
   deck.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       stopAutoplay();
-      goTo((current + 1) % slides.length);
+      next();
       startAutoplay();
     }
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
       stopAutoplay();
-      goTo((current - 1 + slides.length) % slides.length);
+      prev();
       startAutoplay();
     }
   });
@@ -65,6 +69,7 @@ function initAnimations() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
         }
       });
     },
@@ -110,8 +115,6 @@ function initMobileNav() {
 }
 
 // ============ ENTRY POINT ============
-document.addEventListener('DOMContentLoaded', () => {
-  initSlideDeck();
-  initAnimations();
-  initMobileNav();
-});
+initSlideDeck();
+initAnimations();
+initMobileNav();
