@@ -16,11 +16,6 @@ console.log('\u2713 apple-touch-icon.png');
 
 // ============ OG IMAGES ============
 
-// og-paymentslaw.png — pre-sized, committed, no processing needed.
-
-// Copy 3dsspec (already 56 KB, no optimisation needed)
-await sharp('../3dsExplorer/public/og-image.png').toFile('public/og-3dsspec.png');
-
-console.log('\u2713 og-3dsspec.png');
+// og-paymentslaw.png, og-3dsspec.png — pre-sized, committed, no processing needed.
 
 console.log('Done.');
