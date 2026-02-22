@@ -719,9 +719,9 @@
     padding: var(--space-3) var(--space-5);
     border: 1px solid var(--border-strong);
     border-radius: var(--radius);
-    font-family: var(--font-nav-caps);
+    font-family: var(--font-nav);
     font-size: var(--small);
-    letter-spacing: 0.05em;
+    letter-spacing: 0;
     color: var(--ink-light);
     transition: all var(--transition);
   }
