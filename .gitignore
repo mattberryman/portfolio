@@ -2,6 +2,7 @@ node_modules/
 dist/
 .DS_Store
 *.local
+.playwright-mcp/
 
 # Logs
 npm-debug.log*
