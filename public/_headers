@@ -4,7 +4,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' static.cloudflareinsights.com; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' cloudflareinsights.com; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' static.cloudflareinsights.com 'sha256-9YvStZsbj++McsmY/V2ynZP7RJbJDeifdcUtLNovWCw='; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' cloudflareinsights.com; frame-ancestors 'none'
 
 # Fonts — long cache; files are stable and versioned by filename
 /fonts/*
