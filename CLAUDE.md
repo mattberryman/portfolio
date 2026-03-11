@@ -38,7 +38,6 @@ public/
   profile@2x.png        ← Portrait (not currently used in HTML)
 vite.config.js          ← Multi-page input: index.html + 404.html
 wrangler.toml           ← pages_build_output_dir = "./dist"
-docs/plans/             ← Implementation plans (delete when complete)
 ```
 
 ## CSS Architecture
