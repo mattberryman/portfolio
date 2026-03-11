@@ -104,6 +104,10 @@ Font files in `public/fonts/`:
 
 Cloudflare Pages auto-deploys from `origin/main` via Workers Builds. Preview deployments are created for all branches. To trigger a build: push to any branch. To go live: push to `main` (after user approves).
 
+## Local Config
+
+`.claude/` is globally gitignored — settings, skills, and hooks are local-only. Don't attempt to commit them.
+
 ## Pending TODOs
 
 See `memory/MEMORY.md` for current pending items (schema.org knowsAbout, OG image, CF domain config, analytics).
