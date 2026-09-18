@@ -231,10 +231,12 @@
     color: var(--ink);
   }
 
+  /* As on the CV header: Concourse semibold in the accent, tight tracking */
   h1 {
     font-size: var(--text-h1);
-    font-weight: 700;
-    letter-spacing: -0.025em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--accent);
   }
 
   h2 {
@@ -817,7 +819,12 @@
     margin-bottom: var(--space-4);
   }
 
+  /* Role entries laid out as on the CV: organisation left, dates right, position below */
   .timeline > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--space-4);
+    align-items: baseline;
     padding: var(--space-3) 0;
     border-top: 1px solid var(--rule);
   }
@@ -828,16 +835,20 @@
     color: var(--ink);
   }
   .timeline dd {
+    grid-column: 1 / -1;
     font-family: var(--font-ui);
     font-size: var(--text-ui);
     color: var(--ink-2);
     line-height: 1.4;
-  }
-  .timeline .years {
-    display: block;
-    font-size: var(--text-sm);
-    color: var(--ink-4);
     margin-top: 2px;
+  }
+  .timeline dd.years {
+    grid-column: 2;
+    grid-row: 1;
+    margin-top: 0;
+    font-size: var(--text-sm);
+    color: var(--ink-3);
+    white-space: nowrap;
   }
 
   /* ========================================
