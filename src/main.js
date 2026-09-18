@@ -1,85 +1,61 @@
-// ============ SLIDE DECK ============
-function initSlideDeck() {
-  const deck = document.getElementById('slideDeck');
-  const controls = document.getElementById('slideControls');
-  if (!deck || !controls) return;
+// ============ THEME ============
+// Three-state preference (auto / light / dark), stored under `theme`, resolved
+// to data-theme on <html>. The inline boot script in index.html applies the
+// stored preference before first paint; this keeps it in sync afterwards.
+function initTheme() {
+  const root = document.documentElement;
+  const button = document.querySelector('[data-action="toggle-theme"]');
+  if (!button) return;
 
-  const slides = deck.querySelectorAll('.slide');
-  const dots = controls.querySelectorAll('.slide-dot');
-  let current = 0;
-  let interval;
+  const order = ['auto', 'light', 'dark'];
+  const labels = { auto: 'automatic', light: 'light', dark: 'dark' };
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
 
-  function goTo(index) {
-    if (index < 0 || index >= slides.length || index >= dots.length) return;
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = index;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
+  function apply(pref) {
+    root.setAttribute('data-theme-pref', pref);
+    root.setAttribute('data-theme', pref === 'auto' ? (media.matches ? 'dark' : 'light') : pref);
+    button.setAttribute('aria-label', `Theme: ${labels[pref]}`);
   }
 
-  function next() {
-    goTo((current + 1) % slides.length);
-  }
+  apply(root.getAttribute('data-theme-pref') || 'auto');
 
-  function prev() {
-    goTo((current - 1 + slides.length) % slides.length);
-  }
-
-  function startAutoplay() {
-    interval = setInterval(next, 5000);
-  }
-
-  function stopAutoplay() {
-    clearInterval(interval);
-  }
-
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      stopAutoplay();
-      goTo(parseInt(dot.dataset.target, 10));
-      startAutoplay();
-    });
+  button.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme-pref') || 'auto';
+    const next = order[(order.indexOf(current) + 1) % order.length];
+    try {
+      if (next === 'auto') localStorage.removeItem('theme');
+      else localStorage.setItem('theme', next);
+    } catch {
+      /* storage unavailable; the choice lasts for this page only */
+    }
+    apply(next);
   });
 
-  deck.setAttribute('tabindex', '0');
-  deck.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      stopAutoplay();
-      next();
-      startAutoplay();
-    }
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      stopAutoplay();
-      prev();
-      startAutoplay();
-    }
+  media.addEventListener('change', () => {
+    if ((root.getAttribute('data-theme-pref') || 'auto') === 'auto') apply('auto');
   });
-
-  deck.addEventListener('mouseenter', stopAutoplay);
-  deck.addEventListener('mouseleave', startAutoplay);
-
-  startAutoplay();
 }
 
 // ============ SCROLL ANIMATIONS ============
 function initAnimations() {
+  const targets = document.querySelectorAll('.animate-in');
+  if (!targets.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    targets.forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
+          entry.target.classList.add('is-visible');
           observer.unobserve(entry.target);
         }
       });
     },
     { threshold: 0.1 }
   );
-
-  document.querySelectorAll('.animate-in').forEach((el) => {
-    el.style.animationPlayState = 'paused';
-    observer.observe(el);
-  });
+  targets.forEach((el) => observer.observe(el));
 }
 
 // ============ MOBILE NAV — ACTIVE SECTION ============
@@ -87,22 +63,20 @@ function initMobileNav() {
   const navItems = document.querySelectorAll('.mobile-nav-item');
   if (!navItems.length) return;
 
-  const sections = ['writing', 'projects', 'connect'];
-  const visibleSections = new Set();
+  const sections = [...navItems].map((item) => item.dataset.section);
+  const visible = new Set();
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          visibleSections.add(entry.target.id);
-        } else {
-          visibleSections.delete(entry.target.id);
-        }
+        if (entry.isIntersecting) visible.add(entry.target.id);
+        else visible.delete(entry.target.id);
       });
       navItems.forEach((item) => item.classList.remove('active'));
-      const firstVisible = sections.find((id) => visibleSections.has(id));
-      if (firstVisible) {
-        const active = document.querySelector(`.mobile-nav-item[data-section="${firstVisible}"]`);
-        if (active) active.classList.add('active');
+      const first = sections.find((id) => visible.has(id));
+      if (first) {
+        document
+          .querySelector(`.mobile-nav-item[data-section="${first}"]`)
+          ?.classList.add('active');
       }
     },
     { rootMargin: '-40% 0px -40% 0px' }
@@ -114,7 +88,14 @@ function initMobileNav() {
   });
 }
 
+// ============ FOOTER YEAR ============
+function initYear() {
+  const el = document.querySelector('[data-year]');
+  if (el) el.textContent = String(new Date().getFullYear());
+}
+
 // ============ ENTRY POINT ============
-initSlideDeck();
+initTheme();
 initAnimations();
 initMobileNav();
+initYear();

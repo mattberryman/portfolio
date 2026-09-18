@@ -343,3 +343,15 @@ portrait goes on the hero. Whether the portfolio takes the blog's purple, as
 proposed, or keeps a distinct accent. Whether the product-site changes are
 scheduled now or left as Option C. Everything else above is a routine
 implementation choice.
+
+## Status
+
+The portfolio refresh described above is implemented on this branch:
+family tokens with a three-state theme, portrait in the hero, three equal
+project cards carrying each site's own mark and OG card, the Writing section
+filled from the blog feed at build time with a committed fallback, four OG
+cards in the shared grammar, monogram favicons, and the hygiene list. The
+owner's decisions were: lead with the work and the skills for inbound
+contacts, no job-search framing; portrait in the header; the blog's purple
+as the portfolio accent; and the blog and paymentslaw.eu left as they are,
+so the product-site changes above are recorded but not scheduled.

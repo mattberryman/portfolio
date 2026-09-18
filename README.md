@@ -1,6 +1,6 @@
 # mattberryman.com
 
-Personal portfolio site for Matt Berryman — payments, regulation, and AI.
+Personal profile site for Matt Berryman — payments, authentication and regulation.
 
 Live at **[mattberryman.com](https://mattberryman.com)** (also mattberryman.co.uk).
 
@@ -23,19 +23,22 @@ npm run preview   # preview the production build
 ## Project Structure
 
 ```
-index.html              ← Main page
+index.html              ← Main page (Writing section filled from the blog feed at build time)
 404.html                ← Error page (self-contained styles)
 src/
-  styles/main.css       ← All CSS
-  main.js               ← Slide deck, scroll animations, mobile nav
+  styles/main.css       ← All CSS, light and dark tokens
+  main.js               ← Theme toggle, scroll animations, mobile nav
+  data/writing.json     ← Committed feed snapshot, the build's fallback
+scripts/                ← Feed parser, snapshot refresh, OG card renderer
 public/
   fonts/                ← Self-hosted woff2 font files
   icons.svg             ← SVG sprite
-  og-*.png              ← Open Graph images
+  marks/                ← The project sites' marks
+  og-*.png              ← Open Graph cards (1200×630)
   robots.txt
   sitemap.xml
   _headers              ← Cloudflare security and cache headers
-docs/plans/             ← Implementation plans (archived when complete)
+docs/design/            ← The design language shared with paymentslaw.eu, 3dsspec.com and transactionintelligence.net
 ```
 
 ## Deployment

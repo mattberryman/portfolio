@@ -1,33 +1,76 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB" data-theme-pref="auto">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matt Berryman — Payments, Regulation & AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Matt Berryman — Payments, Authentication & Regulation</title>
     <meta
       name="description"
-      content="Thirteen years in payments and financial regulation. Now focused on the intersection where AI reshapes how regulated industries operate."
+      content="Matt Berryman leads sales engineering for payment authentication at Entersekt and builds reference tools for EU payments law and EMV 3-D Secure: paymentslaw.eu, 3dsspec.com and Transaction Intelligence."
     />
-    <link rel="canonical" href="https://mattberryman.com" />
+    <link rel="canonical" href="https://mattberryman.com/" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FBF9F5" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0E0D14" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mattberryman.com" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://mattberryman.com/" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:site_name" content="Matt Berryman" />
-    <meta property="og:title" content="Matt Berryman — Payments, Regulation & AI" />
+    <meta property="og:title" content="Matt Berryman — Payments, Authentication & Regulation" />
     <meta
       property="og:description"
-      content="Thirteen years in payments and financial regulation. Now focused on the intersection where AI reshapes how regulated industries operate."
+      content="Sales engineering and customer success leadership for payment authentication, and reference tools that give payments people and their AI the primary source."
     />
     <meta property="og:image" content="https://mattberryman.com/og-mattberryman.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Matt Berryman: payments, authentication, regulation" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Favicons -->
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Fonts used above the fold -->
+    <link
+      rel="preload"
+      href="/fonts/concourse_ot_7_bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/equity_a_regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/concourse_3_caps_regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Theme boot: resolve the stored preference before first paint (hashed in public/_headers CSP) -->
+    <script>
+      (function () {
+        var pref = 'auto';
+        try {
+          pref = localStorage.getItem('theme') || 'auto';
+        } catch (e) {
+          /* storage unavailable */
+        }
+        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var root = document.documentElement;
+        root.setAttribute('data-theme-pref', pref);
+        root.setAttribute('data-theme', pref === 'auto' ? (dark ? 'dark' : 'light') : pref);
+      })();
+    </script>
 
     <!-- Schema.org Person -->
     <script type="application/ld+json">
@@ -38,23 +81,37 @@
         "givenName": "Matthew",
         "familyName": "Berryman",
         "alternateName": "Matt Berryman",
-        "url": "https://mattberryman.com",
-        "image": "https://mattberryman.com/og-mattberryman.png",
-        "jobTitle": "Head of Customer Success & Solution Architecture",
-        "description": "Thirteen years in payments and financial regulation. Now focused on the intersection where AI reshapes how regulated industries operate.",
+        "url": "https://mattberryman.com/",
+        "image": "https://mattberryman.com/portrait-640.jpg",
+        "jobTitle": "VP Sales Engineering",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Entersekt",
+          "url": "https://www.entersekt.com/"
+        },
+        "description": "Sales engineering and customer success leadership for payment authentication, and reference tools for EU payments law and EMV 3-D Secure.",
+        "knowsAbout": [
+          "Payment authentication",
+          "EMV 3-D Secure",
+          "Strong customer authentication",
+          "PSD2",
+          "PSD3 and the Payment Services Regulation",
+          "EU payments regulation",
+          "Customer success",
+          "Sales engineering",
+          "Model Context Protocol"
+        ],
         "address": {
           "@type": "PostalAddress",
+          "addressRegion": "Hampshire",
           "addressCountry": "GB"
-        },
-        "nationality": {
-          "@type": "Country",
-          "name": "United Kingdom"
         },
         "sameAs": [
           "https://www.linkedin.com/in/mattberryman/",
           "https://github.com/mattberryman",
-          "https://transactionintelligence.net",
-          "https://matt.berryman.social"
+          "https://transactionintelligence.net/",
+          "https://paymentslaw.eu/",
+          "https://3dsspec.com/"
         ]
       }
     </script>
@@ -62,326 +119,394 @@
     <link rel="stylesheet" href="/src/styles/main.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <!-- ============ NAVIGATION ============ -->
-    <nav aria-label="Main navigation">
+    <nav class="site-nav" aria-label="Main navigation">
       <div class="container">
-        <a href="#" class="nav-logo">Matt Berryman</a>
+        <a href="#top" class="nav-logo">
+          <span class="monogram" aria-hidden="true">MB</span>
+          <span>Matt Berryman</span>
+        </a>
         <ul class="nav-links">
+          <li><a href="#work">Work</a></li>
           <li><a href="#writing">Writing</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#connect">Connect</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
+        <button
+          class="theme-toggle"
+          type="button"
+          data-action="toggle-theme"
+          aria-label="Theme: automatic"
+        >
+          <svg class="icon-auto" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="/icons.svg#icon-auto" />
+          </svg>
+          <svg class="icon-light" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="/icons.svg#icon-sun" />
+          </svg>
+          <svg class="icon-dark" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="/icons.svg#icon-moon" />
+          </svg>
+        </button>
       </div>
     </nav>
 
-    <!-- ============ MOBILE NAV (sticky bottom, < 768px only) ============ -->
-    <nav class="mobile-nav" aria-label="Mobile navigation">
+    <!-- ============ MOBILE NAV (sticky bottom, ≤768px only) ============ -->
+    <nav class="mobile-nav" aria-label="Section navigation">
+      <a href="#work" class="mobile-nav-item" data-section="work">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="/icons.svg#icon-briefcase" /></svg>
+        <span>Work</span>
+      </a>
       <a href="#writing" class="mobile-nav-item" data-section="writing">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use href="/icons.svg#icon-book" /></svg>
         <span>Writing</span>
       </a>
-      <a href="#projects" class="mobile-nav-item" data-section="projects">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="/icons.svg#icon-briefcase" /></svg>
-        <span>Projects</span>
-      </a>
-      <a href="#connect" class="mobile-nav-item" data-section="connect">
+      <a href="#about" class="mobile-nav-item" data-section="about">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use href="/icons.svg#icon-person" /></svg>
-        <span>Connect</span>
+        <span>About</span>
+      </a>
+      <a href="#contact" class="mobile-nav-item" data-section="contact">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="/icons.svg#icon-email" /></svg>
+        <span>Contact</span>
       </a>
     </nav>
 
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-grid">
+    <main id="main">
+      <!-- ============ HERO ============ -->
+      <header class="hero" id="top">
+        <div class="container hero-grid">
           <div class="hero-text">
-            <p class="label">Payments &middot; Regulation &middot; AI</p>
-            <h1>Bringing domain depth to frontier AI.</h1>
-            <p class="hero-subtitle">
-              Thirteen years in payments and financial regulation: pre-sales architecture through
-              implementation, support and customer success, across Tier 1 banks and global merchants
-              where regulatory scrutiny and customer expectations are equally unforgiving. Now I'm
-              focused on the intersection where AI reshapes how regulated industries operate.
+            <p class="eyebrow">Payments &middot; Authentication &middot; Regulation</p>
+            <h1>Matt Berryman</h1>
+            <p class="strap">VP Sales Engineering, Entersekt &middot; Hampshire, UK</p>
+            <p class="lede">
+              I lead sales engineering for payment authentication at Entersekt, after five years
+              running global customer success for a 3-D Secure platform used by some of the world's
+              largest banks. Before that I founded ScriptSwitch, prescribing decision-support
+              software adopted across the NHS. On the side I build reference tools that give
+              payments professionals, and their AI assistants, the primary source rather than a
+              confident recollection.
+            </p>
+            <div class="hero-actions">
+              <a href="#work" class="button button-primary">
+                See the work
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="/icons.svg#icon-arrow-down" />
+                </svg>
+              </a>
+              <a href="#contact" class="button">Get in touch</a>
+            </div>
+          </div>
+          <figure class="hero-portrait">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="/portrait-320.webp 320w, /portrait-640.webp 640w, /portrait-960.webp 960w"
+                sizes="(max-width: 960px) 160px, 280px"
+              />
+              <img
+                src="/portrait-640.jpg"
+                width="640"
+                height="640"
+                alt="Portrait of Matt Berryman"
+                fetchpriority="high"
+              />
+            </picture>
+          </figure>
+        </div>
+      </header>
+
+      <!-- ============ WORK ============ -->
+      <section class="work-section" id="work">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">Work</p>
+            <h2>Reference tools built from the inside.</h2>
+            <p>
+              Three properties with one idea behind them: payments professionals should be able to
+              reach the primary source, and so should their AI.
             </p>
           </div>
 
-          <!-- SLIDE DECK -->
-          <div class="hero-visual">
-            <div class="slide-deck" id="slideDeck">
-              <div class="slide slide-gradient-1 active" data-slide="0">
-                <div class="slide-number">01 / 03</div>
-                <h2>You run the business. I worry about the regulation.</h2>
-                <p>
-                  Tier 1 banks and global merchants have enough on their plate. For thirteen years,
-                  I've been the person who translates PSD2, DORA and SCA into clear guidance, so
-                  customers can move fast without the compliance risk.
+          <div class="work-grid">
+            <article class="project-card animate-in">
+              <a href="https://paymentslaw.eu/" rel="noopener" class="project-visual">
+                <img
+                  src="/og-paymentslaw.png"
+                  width="1200"
+                  height="630"
+                  alt="paymentslaw.eu: EU Payments Law, like EUR-Lex but actually usable"
+                  loading="lazy"
+                />
+              </a>
+              <div class="project-info">
+                <p class="project-title">
+                  <img src="/marks/paymentslaw.svg" width="28" height="28" alt="" class="mark" />
+                  <span>
+                    <span class="project-name">EU Payments Law</span>
+                    <span class="project-url">paymentslaw.eu</span>
+                  </span>
                 </p>
-              </div>
-              <div class="slide slide-gradient-2" data-slide="1">
-                <div class="slide-number">02 / 03</div>
-                <h2>I don't just advise on regulation. I index it.</h2>
                 <p>
-                  paymentslaw.eu, 3dsspec.com. Tools built from domain knowledge that only comes
-                  from years inside the problem.
+                  EU payments law, built for people who have to use it. PSD2, PSD3, the PSR, FiDA,
+                  eIDAS2 and the AI Act, with the supporting acts around them, as cross-linked,
+                  searchable provisions rather than EUR-Lex PDFs. Follow an obligation from PSD2
+                  into PSD3 and the PSR article by article, and hover a defined term for its
+                  in-force wording.
                 </p>
+                <p class="project-ai">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/icons.svg#icon-sparkle" />
+                  </svg>
+                  Free MCP server, no API key: ground Claude or ChatGPT in the corpus.
+                </p>
+                <a href="https://paymentslaw.eu/" rel="noopener" class="visit-link">
+                  Open paymentslaw.eu
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/icons.svg#icon-external-link" />
+                  </svg>
+                </a>
               </div>
-              <div class="slide slide-gradient-3" data-slide="2">
-                <div class="slide-number">03 / 03</div>
-                <h2>AI changes everything. Domain depth decides how.</h2>
+            </article>
+
+            <article class="project-card animate-in">
+              <a href="https://3dsspec.com/" rel="noopener" class="project-visual">
+                <img
+                  src="/og-3dsspec.png"
+                  width="1200"
+                  height="630"
+                  alt="3dsspec.com: 3DS Reference, a source-attributed reference for EMV 3-D Secure"
+                  loading="lazy"
+                />
+              </a>
+              <div class="project-info">
+                <p class="project-title">
+                  <img src="/marks/3dsspec.svg" width="28" height="28" alt="" class="mark" />
+                  <span>
+                    <span class="project-name">3DS Reference</span>
+                    <span class="project-url">3dsspec.com</span>
+                  </span>
+                </p>
                 <p>
-                  The organisations that get AI right in regulated industries won't be the ones with
-                  the best models. They'll be the ones that understand the constraints. That's where
-                  I operate.
+                  A source-attributed reference for EMV 3-D Secure. Every data element and message
+                  type in the current Core specification, with formats, values, inclusion conditions
+                  and the page they came from. Build a required-field checklist for a channel and
+                  category, and compare reconstructed source cells across editions.
                 </p>
+                <p class="project-ai">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/icons.svg#icon-sparkle" />
+                  </svg>
+                  MCP for AI clients: messages, fields and protocol flows with citations.
+                </p>
+                <a href="https://3dsspec.com/" rel="noopener" class="visit-link">
+                  Open 3dsspec.com
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/icons.svg#icon-external-link" />
+                  </svg>
+                </a>
               </div>
-            </div>
-            <div class="slide-controls" id="slideControls">
-              <button class="slide-dot active" data-target="0" aria-label="Slide 1"></button>
-              <button class="slide-dot" data-target="1" aria-label="Slide 2"></button>
-              <button class="slide-dot" data-target="2" aria-label="Slide 3"></button>
-            </div>
+            </article>
+
+            <article class="project-card animate-in">
+              <a href="https://transactionintelligence.net/" rel="noopener" class="project-visual">
+                <img
+                  src="/og-transaction-intelligence.png"
+                  width="1200"
+                  height="630"
+                  alt="transactionintelligence.net: independent essays on payments, behaviour and the quiet plumbing of finance"
+                  loading="lazy"
+                />
+              </a>
+              <div class="project-info">
+                <p class="project-title">
+                  <svg viewBox="0 0 5040 5040" class="mark mark-ti" aria-hidden="true">
+                    <use href="/marks/transaction-intelligence.svg#glyph" />
+                  </svg>
+                  <span>
+                    <span class="project-name">Transaction Intelligence</span>
+                    <span class="project-url">transactionintelligence.net</span>
+                  </span>
+                </p>
+                <p>
+                  Independent essays on payments, behaviour and the quiet plumbing of finance: the
+                  regulation as written, the systems as built, and the people in between. Long-form
+                  analysis of authentication, fraud, open banking and the PSD3 package, with a
+                  members' tier for the pieces that go further.
+                </p>
+                <p class="project-ai">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/icons.svg#icon-book" />
+                  </svg>
+                  Where the analysis behind the reference tools gets written up.
+                </p>
+                <a href="https://transactionintelligence.net/" rel="noopener" class="visit-link">
+                  Read Transaction Intelligence
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="/icons.svg#icon-external-link" />
+                  </svg>
+                </a>
+              </div>
+            </article>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ FEATURED WRITING ============ -->
-    <section class="writing-section" id="writing">
-      <div class="container">
-        <div class="section-header">
-          <p class="label">Featured Writing</p>
-          <h2>Thinking out loud</h2>
-          <p>
-            Payments, regulation, AI, decision-making. If it's worth understanding properly, it's
-            worth writing about.
+      <!-- ============ WRITING ============ -->
+      <section class="writing-section" id="writing">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">Writing</p>
+            <h2>Latest from Transaction Intelligence</h2>
+            <p>
+              Filled from the site's feed at build time, so this list is as current as the last
+              deploy.
+            </p>
+          </div>
+
+          <div class="writing-grid">
+            <!-- writing:cards -->
+          </div>
+
+          <p class="section-more">
+            <a href="https://transactionintelligence.net/archive/" rel="noopener">
+              All essays on Transaction Intelligence
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="/icons.svg#icon-arrow-right" />
+              </svg>
+            </a>
           </p>
         </div>
+      </section>
 
-        <div class="writing-grid">
-          <a
-            href="https://transactionintelligence.net/ai-governance-in-fraud-detection/"
-            target="_blank"
-            rel="noopener"
-            class="article-card animate-in"
-          >
-            <span class="tag">AI &amp; Governance</span>
-            <h3>AI Governance in Fraud Detection: What the New Frameworks Actually Require</h3>
-            <p>
-              AI-powered fraud detection is outpacing the rules that govern it. The new
-              explainability and governance standards are here. Most financial institutions aren't
-              ready.
-            </p>
-            <span class="read-link"
-              >Read on Transaction Intelligence
-              <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-arrow-right" /></svg
-            ></span>
-          </a>
+      <!-- ============ ABOUT ============ -->
+      <section class="about-section" id="about">
+        <div class="container">
+          <div class="section-header">
+            <p class="eyebrow">About</p>
+            <h2>Where I'm useful</h2>
+          </div>
 
-          <a
-            href="https://transactionintelligence.net/the-wake-up-call-ai-has-defeated-bank-voice-id-now-what/"
-            target="_blank"
-            rel="noopener"
-            class="article-card animate-in"
-          >
-            <span class="tag">AI &amp; Security</span>
-            <h3>AI Has Defeated Bank Voice Authentication. What Now?</h3>
-            <p>
-              Financial institutions relying on voice biometrics face a serious problem. AI can now
-              clone voices from seconds of audio, turning everyday digital footprints into
-              authentication vulnerabilities.
-            </p>
-            <span class="read-link"
-              >Read on Transaction Intelligence
-              <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-arrow-right" /></svg
-            ></span>
-          </a>
+          <div class="about-grid">
+            <ul class="skills">
+              <li>
+                <strong>Customer success and sales engineering leadership.</strong> Building and
+                running global teams that turn technical depth into commercial outcomes for Tier 1
+                banks, processors and partners, from RFP through deployment to renewal.
+              </li>
+              <li>
+                <strong>Payment authentication.</strong> 3-D Secure, risk-based authentication and
+                strong customer authentication as they are actually deployed: issuer and acquirer
+                configuration, approval rates, friction and fraud exposure in the same conversation.
+              </li>
+              <li>
+                <strong>EU payments regulation.</strong> PSD2 to PSD3 and the PSR, DORA, eIDAS2 and
+                the RTS on SCA, read as text with dates and articles rather than as a summary, and
+                translated into what a product roadmap has to do about it.
+              </li>
+              <li>
+                <strong>Applied AI in regulated businesses.</strong> MCP servers, structured
+                extraction and Claude-based tooling that teams use every day, built with the
+                constraints in view: source attribution, versioning and knowing when the answer is
+                not in the corpus.
+              </li>
+            </ul>
 
-          <a
-            href="https://transactionintelligence.net/the-trust-triangle-evoled/"
-            target="_blank"
-            rel="noopener"
-            class="article-card animate-in"
-          >
-            <span class="tag">Payments &amp; AI</span>
-            <h3>AP2 vs 3-D Secure: How Payment Authentication Is Evolving</h3>
-            <p>
-              Twenty-five years ago, the payments industry solved the trust problem of e-commerce
-              with a three-domain architecture. Now, as AI agents prepare to shop on our behalf,
-              history rhymes.
-            </p>
-            <span class="read-link"
-              >Read on Transaction Intelligence
-              <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-arrow-right" /></svg
-            ></span>
-          </a>
-
-          <a
-            href="https://transactionintelligence.net/uk-age-checks-vpn-surge/"
-            target="_blank"
-            rel="noopener"
-            class="article-card animate-in"
-          >
-            <span class="tag">Systems Thinking</span>
-            <h3>Second-Order Thinking: What the UK's Age-Check Law Taught Us About Regulation</h3>
-            <p>
-              Politicians love declaring victory. A new law passes, the metrics move in the right
-              direction. But in complex systems, the real consequences emerge downstream.
-            </p>
-            <span class="read-link"
-              >Read on Transaction Intelligence
-              <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-arrow-right" /></svg
-            ></span>
-          </a>
-
-          <a
-            href="https://transactionintelligence.net/customer-lifecycle-leader-presales-renewal/"
-            target="_blank"
-            rel="noopener"
-            class="article-card animate-in"
-          >
-            <span class="tag">Customer Success</span>
-            <h3>The Customer Lifecycle Leader: Why Your Next VP Should Own Presales to Renewal</h3>
-            <p>
-              A £2M deal on the brink. Not because of product or pricing, but because pre-sales,
-              implementation and CS were pulling in different directions. The case for unifying the
-              customer journey under one leader.
-            </p>
-            <span class="read-link"
-              >Read on Transaction Intelligence
-              <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-arrow-right" /></svg
-            ></span>
-          </a>
-
-          <a
-            href="https://transactionintelligence.net/monzo-buckingham-palace-kyc-systems-failure/"
-            target="_blank"
-            rel="noopener"
-            class="article-card animate-in"
-          >
-            <span class="tag">Regulatory</span>
-            <h3>Monzo's £21 Million Fine: A Systems-Thinking Post-Mortem</h3>
-            <p>
-              The FCA didn't fine Monzo for a single failure. It fined them for a system that made
-              failure inevitable. What the £21M penalty reveals about operational resilience in
-              regulated financial services.
-            </p>
-            <span class="read-link"
-              >Read on Transaction Intelligence
-              <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-arrow-right" /></svg
-            ></span>
-          </a>
+            <div class="background">
+              <h3>Background</h3>
+              <dl class="timeline">
+                <div>
+                  <dt>Entersekt</dt>
+                  <dd>VP Sales Engineering <span class="years">2025 to present</span></dd>
+                </div>
+                <div>
+                  <dt>Varadium</dt>
+                  <dd>
+                    Founder, consulting and software built with Claude
+                    <span class="years">2025</span>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Arcot, Broadcom</dt>
+                  <dd>
+                    Global Head of Customer Success and Solution Consulting
+                    <span class="years">2019 to 2024</span>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Arcot, CA Technologies</dt>
+                  <dd>
+                    Technical Account Manager to Director of Global Presales
+                    <span class="years">2013 to 2019</span>
+                  </dd>
+                </div>
+                <div>
+                  <dt>ScriptSwitch</dt>
+                  <dd>
+                    Founder; prescribing decision support for the NHS, acquired by UnitedHealth
+                    Group
+                    <span class="years">1999 to 2011</span>
+                  </dd>
+                </div>
+                <div>
+                  <dt>University of Warwick</dt>
+                  <dd>BSc Computer Science</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ============ PROJECTS ============ -->
-    <section class="projects-section" id="projects">
-      <div class="container">
-        <div class="section-header">
-          <p class="label">Projects</p>
-          <h2>Saw a problem. Built a fix.</h2>
-          <p>Domain expertise turned into working software.</p>
-        </div>
+      <!-- ============ CONTACT ============ -->
+      <section class="contact-section" id="contact">
+        <div class="container">
+          <p class="eyebrow">Contact</p>
+          <h2>Always glad to compare notes.</h2>
+          <p>
+            If you're working on payment authentication, EU payments regulation, or putting AI to
+            work inside a regulated business, I'd like to hear about it. Interesting conversations
+            are always welcome.
+          </p>
 
-        <div class="project-card">
-          <div class="project-info">
-            <h3>EU Payments Legislation</h3>
-            <span class="project-url">paymentslaw.eu</span>
-            <p>
-              A version of EUR-Lex you'll actually want to use. Built around PSD2, PSD3, PSR, FiDA,
-              eIDAS2 and the AI Act, then expanded to 41 legislative acts. Full-text search, forward
-              and backward cross-referencing, and article-level navigation.
-            </p>
-            <a href="https://paymentslaw.eu" target="_blank" rel="noopener" class="visit-link">
-              Visit paymentslaw.eu
-              <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-external-link" /></svg>
+          <div class="social-links">
+            <a href="mailto:hello@mattberryman.com" class="social-link">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="/icons.svg#icon-email" /></svg>
+              hello@mattberryman.com
+            </a>
+            <a href="https://www.linkedin.com/in/mattberryman/" rel="noopener" class="social-link">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="/icons.svg#icon-linkedin" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/mattberryman" rel="noopener" class="social-link">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="/icons.svg#icon-github" />
+              </svg>
+              GitHub
             </a>
           </div>
-          <div class="project-visual">
-            <img
-              src="/og-paymentslaw.png"
-              alt="EU Payments Law: interactive search across 41 EU payments and financial legislative acts"
-              loading="lazy"
-            />
-          </div>
         </div>
+      </section>
+    </main>
 
-        <div class="project-card">
-          <div class="project-info">
-            <h3>3DS Protocol Reference</h3>
-            <span class="project-url">3dsspec.com</span>
-            <p>
-              Ever wondered what transStatusReason=14 means? Which version of EMV 3DS added RCI 14?
-              What format is the acquirer country code? An interactive reference for the EMV 3DS
-              protocol. Browse message types, field definitions and data elements across releases,
-              without opening thousands of pages of specs.
-            </p>
-            <a href="https://3dsspec.com" target="_blank" rel="noopener" class="visit-link">
-              Visit 3dsspec.com
-              <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-external-link" /></svg>
-            </a>
-          </div>
-          <div class="project-visual">
-            <img
-              src="/og-3dsspec.png"
-              alt="3DS Protocol Reference: interactive EMV 3-D Secure specification browser"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONNECT ============ -->
-    <section class="connect-section" id="connect">
+    <footer class="site-footer">
       <div class="container">
-        <p class="label">Connect</p>
-        <h2>What's next</h2>
-        <p>
-          I'm looking for roles where AI meets regulated complexity; where domain depth and
-          technical leadership both matter. Customer success, solution architecture, or the space in
-          between.
+        <p class="family">
+          <span>A Matt Berryman site</span>
+          <a href="https://paymentslaw.eu/" rel="noopener">paymentslaw.eu</a>
+          <a href="https://3dsspec.com/" rel="noopener">3dsspec.com</a>
+          <a href="https://transactionintelligence.net/" rel="noopener"
+            >transactionintelligence.net</a
+          >
         </p>
-
-        <div class="social-links">
-          <a
-            href="https://www.linkedin.com/in/mattberryman/"
-            target="_blank"
-            rel="noopener"
-            class="social-link"
-          >
-            <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-linkedin" /></svg>
-            LinkedIn
-          </a>
-          <a
-            href="https://transactionintelligence.net"
-            target="_blank"
-            rel="noopener"
-            class="social-link"
-          >
-            <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-book" /></svg>
-            Transaction Intelligence
-          </a>
-          <a
-            href="https://github.com/mattberryman"
-            target="_blank"
-            rel="noopener"
-            class="social-link"
-          >
-            <svg viewBox="0 0 24 24"><use href="/icons.svg#icon-github" /></svg>
-            GitHub
-          </a>
-          <a href="mailto:hello@mattberryman.com" class="social-link">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="/icons.svg#icon-email" /></svg>
-            hello@mattberryman.com
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <p>&copy; 2026 Matt Berryman &middot; Made by a pedant, polished by a machine</p>
+        <p class="colophon">
+          &copy; <span data-year>2026</span> Matt Berryman &middot; Made by a pedant, polished by a
+          machine
+        </p>
       </div>
     </footer>
 
