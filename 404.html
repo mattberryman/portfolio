@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page not found — Matt Berryman</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <style>
       @font-face {
@@ -22,12 +23,36 @@
         font-style: italic;
         font-display: swap;
       }
+      @font-face {
+        font-family: 'Concourse';
+        src: url('/fonts/concourse_ot_7_bold.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Concourse Caps';
+        src: url('/fonts/concourse_3_caps_regular.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
       :root {
-        --ink: #333;
-        --ink-light: #666;
-        --surface: #faf9f7;
-        --accent: #5b4a8a;
-        --border-strong: rgba(51, 51, 51, 0.14);
+        --paper: #fbf9f5;
+        --ink: #1a1814;
+        --ink-3: #6b665c;
+        --accent: #4b2e83;
+        --rule: #e5dfd4;
+        color-scheme: light dark;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #0e0d14;
+          --ink: #ece7dd;
+          --ink-3: #908a7e;
+          --accent: #a188e8;
+          --rule: #28263a;
+        }
       }
       *,
       *::before,
@@ -43,7 +68,7 @@
       body {
         font-family: 'Equity', Georgia, 'Times New Roman', serif;
         color: var(--ink);
-        background: var(--surface);
+        background: var(--paper);
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -54,52 +79,41 @@
       .container {
         max-width: 36rem;
       }
-      .label {
-        font-family: 'Equity', Georgia, serif;
-        font-variant: normal;
-        font-size: 0.875rem;
-        font-weight: 400;
-        letter-spacing: 0.06em;
+      .eyebrow {
+        font-family: 'Concourse Caps', 'Concourse', sans-serif;
+        font-size: 0.9375rem;
+        letter-spacing: 0.1em;
         color: var(--accent);
         margin-bottom: 1rem;
       }
       h1 {
-        font-family: 'Equity', Georgia, 'Times New Roman', serif;
-        font-size: 2.75rem;
-        font-weight: 400;
-        font-style: italic;
-        line-height: 1.2;
+        font-family: 'Concourse', 'Helvetica Neue', Helvetica, sans-serif;
+        font-weight: 700;
+        font-size: clamp(2rem, 6vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
         margin-bottom: 1rem;
       }
       p {
-        color: var(--ink-light);
-        line-height: 1.7;
+        font-size: 1.25rem;
+        line-height: 1.45;
+        color: var(--ink-3);
         margin-bottom: 2rem;
       }
       a {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border: 1px solid var(--border-strong);
-        border-radius: 8px;
-        font-size: 0.9375rem;
-        color: var(--ink-light);
-        text-decoration: none;
-        transition: 180ms ease;
-      }
-      a:hover {
-        border-color: var(--accent);
         color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <p class="label">404</p>
+      <p class="eyebrow">404</p>
       <h1>This page doesn't exist.</h1>
       <p>Or it did and it's gone.</p>
-      <a href="/">← Back to mattberryman.com</a>
+      <a href="/">Back to mattberryman.com</a>
     </div>
   </body>
 </html>
