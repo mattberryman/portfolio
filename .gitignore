@@ -1,6 +1,8 @@
 node_modules/
 dist/
 .DS_Store
+# macOS custom folder icon (filename is "Icon" + carriage return)
+Icon?
 *.local
 .playwright-mcp/
 
