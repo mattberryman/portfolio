@@ -37,6 +37,7 @@ public/
   icons.svg             ← SVG sprite (<symbol> elements, <use href="#id">)
   marks/                ← The three project sites' own marks
   og-*.png              ← OG cards, 1200×630, family grammar (see docs/design/)
+  cards/                ← WebP copies of the project OG cards shown on the page
   portrait-*.{webp,jpg} ← Portrait, hero and schema.org image
   favicon.png/ico, apple-touch-icon.png, icon-512.png ← MB monogram
   robots.txt
@@ -118,6 +119,10 @@ before first paint. That script is allowed by a sha256 hash in
 HTML templates. It is not part of the build and needs an external Playwright
 (`NODE_PATH=... CHROMIUM_PATH=... node scripts/og/render.mjs`). The paymentslaw
 card is that site's own `/og/site.png`, copied rather than rendered.
+
+The project cards show WebP copies in `public/cards/` (660w and 1200w) rather
+than the full PNGs, which stay for `og:image`. After changing an OG card, rerun:
+`for w in 660 1200; do cwebp -q 82 -m 6 -resize $w 0 public/og-<name>.png -o public/cards/<name>-$w.webp; done`
 
 ## Mobile Nav
 
